@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CollectionViewCell" customModule="PageSwiper" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="ngk-Ti-1ET" customClass="CollectionViewCell" customModule="PageSwiper" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="126" height="92"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="126" height="92"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="စီမံကိန္းနင့္ကွန္ဒုိလမ္း" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="HM8-fN-txv">
+                        <rect key="frame" x="0.0" y="0.0" width="126" height="92"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                    </label>
+                </subviews>
+            </view>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="HM8-fN-txv" secondAttribute="trailing" id="7BE-Wn-ePq"/>
+                <constraint firstAttribute="bottom" secondItem="HM8-fN-txv" secondAttribute="bottom" id="bME-MS-Qjg"/>
+                <constraint firstItem="HM8-fN-txv" firstAttribute="leading" secondItem="ngk-Ti-1ET" secondAttribute="leading" id="t4t-Bf-3nu"/>
+                <constraint firstItem="HM8-fN-txv" firstAttribute="top" secondItem="ngk-Ti-1ET" secondAttribute="top" id="xHr-Ov-rE3"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="MMa-un-age"/>
+            <size key="customSize" width="118" height="59"/>
+            <connections>
+                <outlet property="titleLabel" destination="HM8-fN-txv" id="pza-ym-bFC"/>
+            </connections>
+            <point key="canvasLocation" x="91.304347826086968" y="32.8125"/>
+        </collectionViewCell>
+    </objects>
+</document>
