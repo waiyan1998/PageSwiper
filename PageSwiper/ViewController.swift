@@ -121,7 +121,7 @@ extension ViewController    : UIScrollViewDelegate
 
             self.PageIndex = Int (scrollView.contentOffset.x / self.view.frame.width )
 
-            print(scrollView.contentOffset.x)
+            
 
 
         for  cell   in self.Bar.visibleCells
@@ -141,7 +141,7 @@ extension ViewController    : UIScrollViewDelegate
         }
 
 
-            if (self.PageIndex < 1 )
+            if (scrollView.contentOffset.x / self.view.frame.width < 1 )
         {
             self.indicator.frame.origin.x = scrollView.contentOffset.x / 3
 
@@ -153,7 +153,7 @@ extension ViewController    : UIScrollViewDelegate
 
 
          }
-
+    
 
 
         }
@@ -168,11 +168,14 @@ extension ViewController    : UIScrollViewDelegate
     
 
     
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        if (scrollView == self.ScrView)
-        
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        if (scrollView == self.ScrView )
         {
-            print("DIDDD")
+            if (self.PageIndex > 1 )
+            {
+                self.indicator.frame.origin.x =  self.view.frame.width / 3
+            }
+            
         }
     }
     
