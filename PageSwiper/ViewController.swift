@@ -14,6 +14,12 @@ class ViewController : UIViewController {
     let flowlayout = UICollectionViewFlowLayout()
     var PageIndex : Int = 0
  
+    let indicatorBGView  : UIView = {
+        let v = UIView()
+        v.backgroundColor = UIColor.lightGray
+        v.frame = CGRect(origin: .zero, size: CGSize(width: 0, height: 5 ))
+        return v
+    }()
     
     let indicator :  UIView = {
         let v = UIView()
@@ -32,7 +38,7 @@ class ViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(self.view.frame.width)
         let flowlayout = UICollectionViewFlowLayout()
         flowlayout.scrollDirection = .horizontal
         
@@ -47,21 +53,24 @@ class ViewController : UIViewController {
         self.BarOptions.Texts  = ["0" ,"1" ,"2" ,"3" ,"4" ,"5","6","7"]
         self.BarOptions.ItemSize = CGSize(width: self.view.frame.width / 3  , height: 30)
         self.BarOptions.ItemCount = 6
-        self.ScrView.contentSize.width = self.view.frame.width  * CGFloat(self.BarOptions.Texts!.count)
-        
-      //  print(BarOptions)
+        self.ScrView.contentSize.width = self.view.frame.width * CGFloat(self.BarOptions.Texts!.count)
+        //self.ScrView.contentSize.width = 2898
+        //  print(BarOptions)
         
           Bar.delegate   = self
           Bar.dataSource = self
           self.Bar.isScrollEnabled = false
 
         let Bframe  = CGRect(x: 0, y: 100, width: self.view.frame.width , height: 50)
+        self.indicatorBGView.frame.origin.y = 150
+        self.indicatorBGView.frame.size.width = self.view.frame.width
         self.indicator.frame.origin.y = 150
         self.indicator.frame.size.width = self.view.frame.width / 3
         Bar.frame = Bframe
        
        
         self.view.addSubview(Bar)
+        self.view.addSubview(indicatorBGView)
         self.view.addSubview(indicator)
         
         for i in 0...self.BarOptions.Texts!.count - 1 {
@@ -70,17 +79,33 @@ class ViewController : UIViewController {
             label.text = String(i)
             label.backgroundColor  = UIColor.black
             label.textAlignment = .center
-            label.frame = CGRect(x: Int(self.view.frame.width) * i + 100 , y: 100, width: 100, height: 50)
+            label.frame = CGRect(x: Int(self.view.frame.width) * i  , y: 100, width: 100, height: 50)
         
             self.ScrView.addSubview(label)
         }
        
+       
+        
         
         
         // Do any additional setup after loading the view.
      }
 
-
+    override func viewDidAppear(_ animated: Bool) {
+        
+        for c in self.Bar.visibleCells
+        {
+            if (c.tag == 0  )
+            {
+               let cell =  c as! CollectionViewCell
+                   cell.titleLabel.textColor = UIColor.blue
+            }
+        }
+        
+        print(self.view.frame.size)
+        print(self.ScrView.contentSize.width)
+        
+    }
 }
 
 
@@ -89,49 +114,51 @@ extension ViewController    : UIScrollViewDelegate
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-       
+     
         
         if ( scrollView == self.ScrView ) {
-            
-        
-        PageIndex = Int (scrollView.contentOffset.x / self.view.frame.width )
-            
-           
+
+
+            self.PageIndex = Int (scrollView.contentOffset.x / self.view.frame.width )
+
+            print(scrollView.contentOffset.x)
+
+
         for  cell   in self.Bar.visibleCells
         {
             let c = cell as! CollectionViewCell
                 c.titleLabel.textColor = UIColor.lightGray
-            if ( PageIndex == c.tag){
-                
-                c.titleLabel.textColor = indicator.backgroundColor
-                
+            if ( self.PageIndex == c.tag){
+
+                c.titleLabel.textColor = self.indicator.backgroundColor
+
             }else{
-                
+
                  c.titleLabel.textColor = UIColor.lightGray
             }
-            
-         
+
+
         }
-        
-        
-        if (PageIndex < 1 )
+
+
+            if (self.PageIndex < 1 )
         {
             self.indicator.frame.origin.x = scrollView.contentOffset.x / 3
-            
-            
-        }else
-        {
-           
-            
-                self.Bar.setContentOffset(CGPoint(x:  CGFloat(PageIndex - 1) * (self.view.frame.width / 3)    , y: 0 ), animated: true)
-            
-            
+
+
+        }else{
+
+
+            self.Bar.contentOffset.x = (scrollView.contentOffset.x - self.view.frame.width ) / 3
+
+
          }
-            
+
+
+
+        }
         
             
-        }
         
  
 
@@ -139,14 +166,15 @@ extension ViewController    : UIScrollViewDelegate
     
   
     
+
+    
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-       
+        if (scrollView == self.ScrView)
         
-        
+        {
+            print("DIDDD")
+        }
     }
-    
-    
-    
     
 }
 

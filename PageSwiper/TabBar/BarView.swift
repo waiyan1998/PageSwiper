@@ -99,7 +99,7 @@ extension ViewController : UICollectionViewDelegateFlowLayout  {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell" , for: indexPath) as! CollectionViewCell
         
         cell.titleLabel.text = self.BarOptions.Texts![indexPath.row ]
-         // cell.titleLabel.text = self.BarOptions.Texts![indexPath.row ]
+        
         
         let TapGuesture = UITapGestureRecognizer()
         TapGuesture.addTarget(self, action: #selector(Tap(sender:)))
@@ -117,8 +117,9 @@ extension ViewController : UICollectionViewDelegateFlowLayout  {
     
     @objc func Tap( sender : UITapGestureRecognizer )
     {
-        print(sender.view?.tag)
-       self.ScrView.setContentOffset(CGPoint(x: CGFloat (sender.view!.tag) * self.view.frame.width , y: 0 ), animated: true )
+        //print(sender.view?.tag)
+        self.ScrView.setContentOffset(CGPoint(x: CGFloat (sender.view!.tag) * self.view.frame.width , y: 0 ), animated: true )
+        
     }
         
     
